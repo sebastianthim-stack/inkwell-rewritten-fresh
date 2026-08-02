@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inkwell, rewritten. | Inkwell Books</title>
+  <meta name="description" content="Inkwell Books' new Library Card lives on your phone — a free book, late-night events, and no stamps to lose. Claim your Library Card.">
+  <meta name="theme-color" content="#14213D">
+  <meta property="og:title" content="Inkwell, rewritten.">
+  <meta property="og:description" content="Nine bookshops. One card that lives on your phone. Claim your Library Card.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314213D'/%3E%3Cpath d='M20 44V20h24v6H30v4h12v6H30v8z' fill='%23F4ECD8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body id="top">
+  <a class="skip" href="#claim">Skip to your Library Card</a>
+
+  <canvas id="scene" aria-hidden="true" tabindex="-1"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="topbar-word" href="#top" aria-label="Inkwell Rewritten · est. 1991 — back to top">Inkwell Rewritten · est. 1991</a>
+    <a class="cta cta--mini" href="#claim">Claim your Library Card</a>
+  </header>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+  <main id="main">
+    <p class="no-webgl-note" id="no-webgl-note" role="status">Your library's in book-lending mode — everything here still works.</p>
+
+    <!-- Scene 1 — hero -->
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="hero-art-static" aria-hidden="true">
+        <img src="logo.svg" width="260" height="260" alt="The Inkwell wordmark, an ink bloom forming the letter I">
+      </div>
+      <div class="hero-inner">
+        <p class="kicker">INKWELL REWRITTEN</p>
+        <h1 id="hero-h">Inkwell, rewritten.</h1>
+        <p class="sub">Your Library Card is back — free books, late-night authors, and a shelf that still knows your taste.</p>
+        <p class="sub sub--alt">Nine bookshops. One card that lives on your phone — a free book, late-night events, and no stamps to lose.</p>
+        <figure class="stat" id="hero-stat">
+          <p class="stat-main">Under-35 spend at Inkwell fell 48% in two years. We noticed. You were missed.</p>
+          <p class="stat-alt">Under-35 spend at our tills fell 48% in two years. We'd rather you came back.</p>
+          <figcaption class="stat-src">† Inkwell till data, Jun–Aug 2024 vs Mar–May 2026 · Computed from our own sales records, 2024–2026</figcaption>
+        </figure>
+        <a class="cta" href="#claim">Claim your Library Card</a>
+      </div>
+      <p class="scroll-cue" aria-hidden="true">Scroll — the library is endless</p>
+    </section>
+
+    <!-- Scene 2 — the drift / story -->
+    <section class="story" aria-label="Our story">
+      <h2 class="visually-hidden">Our story</h2>
+      <div class="beat reveal" data-pos="0.28"><p class="beat-text">Thirty-three years, nine shops, one cat called Tolstoy.</p></div>
+      <div class="beat reveal" data-pos="0.42"><p class="beat-text">Then the readers who grew up with us found other shelves.</p></div>
+      <div class="beat reveal" data-pos="0.52"><p class="beat-text">So we're rewriting the card — not the shop.</p></div>
+    </section>
+
+    <!-- Scene 3 — the proof / unlocks -->
+    <section class="proof" aria-label="What you unlock">
+      <h2 class="visually-hidden">What you unlock</h2>
+      <article class="unlock reveal" data-pos="0.60">
+        <h3 class="unlock-title">A free book, on us.</h3>
+        <p class="unlock-body">Every ninth book earns the tenth — remembered on your card, not a stamp card in a drawer.</p>
+      </article>
+      <article class="unlock reveal" data-pos="0.68">
+        <h3 class="unlock-title">Late-night author events.</h3>
+        <p class="unlock-body">Members-only nights: authors, books, and the lights on long after the shutters come down.</p>
+      </article>
+      <article class="unlock reveal" data-pos="0.74">
+        <h3 class="unlock-title">It lives on your phone.</h3>
+        <p class="unlock-body">A gold ex-libris bookplate in your pocket. No paper, no stamps, no "I left it at home."</p>
+      </article>
+    </section>
+
+    <!-- Scene 4 — the card / claim -->
+    <section class="claim" id="claim" aria-labelledby="claim-h">
+      <div class="claim-layout">
+        <div class="card3d" aria-hidden="true">
+          <div class="card3d-inner">
+            <div class="card3d-face card3d-front">
+              <p class="card-kicker">EX LIBRIS</p>
+              <p class="card-word">INKWELL</p>
+              <p class="card-sub">Library Card</p>
+            </div>
+            <div class="card3d-face card3d-back">
+              <p class="card-name" id="card-name">Member, Library of Inkwell</p>
+              <p class="card-member">Member since 2026</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="claim-copy">
+          <h2 id="claim-h">Claim your Library Card</h2>
+          <p class="helper">One email, and the next chapter's on you.</p>
+
+          <form id="claim-form" novalidate role="form" aria-labelledby="claim-h">
+            <p class="field">
+              <label for="em">Your email</label>
+              <input type="email" id="em" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="em-hint em-err" aria-invalid="false">
+              <span class="hint" id="em-hint">We only use it for Inkwell news, events and your card.</span>
+              <span class="err" id="em-err" role="alert" hidden>Mind checking that email? It didn't look right.</span>
+            </p>
+            <p class="field field--consent">
+              <input type="checkbox" id="consent" name="consent" required aria-describedby="consent-err">
+              <label for="consent">Yes, email me Inkwell news and events. Unsubscribe anytime.</label>
+              <span class="err" id="consent-err" role="alert" hidden>We need that tick to email you — it's the whole deal.</span>
+            </p>
+            <p class="field field--submit">
+              <button type="submit" class="cta cta--submit" id="submit-btn">Claim your Library Card</button>
+            </p>
+          </form>
+
+          <div id="form-status" role="status" aria-live="polite"></div>
+
+          <div class="success" id="success-block" hidden>
+            <h3 id="success-h" tabindex="-1">Welcome to the Library.</h3>
+            <p>Your card's ready — a golden bookplate just arrived in your inbox. Your free book is waiting at the till.</p>
+            <p class="success-mail">Didn't see it? Your mail app may have opened instead — check for a draft to <a href="mailto:hello@inkwellbooks.ie">hello@inkwellbooks.ie</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-branches">Camden St · Rathmines · Dún Laoghaire · Galway · Cork · Limerick · Kilkenny · Dundrum · Maynooth</p>
+      <p class="footer-line">Inkwell Books · Nine shops across Ireland · est. 1991</p>
+      <p class="footer-legal">You can unsubscribe anytime.</p>
+      <p class="footer-links">
+        <a href="#privacy">How we use your email</a>
+        <a href="#privacy">Privacy policy.</a>
+        <a href="mailto:hello@inkwellbooks.ie?subject=Unsubscribe&body=Please%20unsubscribe%20this%20address%20from%20Inkwell%20emails.">Unsubscribe anytime.</a>
+      </p>
+      <p class="footer-brand">Inkwell Rewritten · est. 1991</p>
+      <div class="privacy-note" id="privacy" tabindex="-1">
+        <p>We keep your email only to send you Inkwell news, events and your card. We never sell it. You can unsubscribe anytime — every email carries a link.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Progressive enhancement boot. Static HTML + CSS + form always work.
+       The WebGL scene is loaded only when the browser can render it and the
+       visitor has not asked for reduced motion. */
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) root.classList.add('reduced-motion');
+
+      var canvas = document.getElementById('scene');
+      var note = document.getElementById('no-webgl-note');
+
+      function enableStaticHero() {
+        root.classList.remove('webgl');
+        root.classList.add('no-webgl');
+        if (canvas) canvas.remove();
+        if (note) note.hidden = false;
+      }
+
+      function webglOk() {
+        try {
+          var c = document.createElement('canvas');
+          return !!(window.WebGLRenderingContext &&
+            (c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl')));
+        } catch (e) { return false; }
+      }
+
+      window.__inkwellFallback = enableStaticHero;
+
+      var touch = (navigator.maxTouchPoints || 0) > 0;
+      var small = Math.min(window.innerWidth, window.innerHeight) < 700;
+      var lowMem = (navigator.deviceMemory && navigator.deviceMemory <= 4) || false;
+      var lowCpu = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || false;
+      var tier = (lowMem || lowCpu || (touch && small)) ? 'C' : (touch ? 'B' : 'A');
+
+      if (reduced || !webglOk()) { enableStaticHero(); return; }
+
+      root.classList.add('webgl');
+      window.__inkwellBoot = { tier: tier, canvas: canvas };
+
+      import('./app.js').then(function (m) {
+        try { m.init(window.__inkwellBoot); }
+        catch (e) { enableStaticHero(); }
+      }).catch(function () { enableStaticHero(); });
+    })();
+  </script>
+  <script>
+    /* Reveals + chrome for every mode (static and WebGL). */
+    (function () {
+      var root = document.documentElement;
+      var bar = document.getElementById('progress-bar');
+      var topbar = document.querySelector('.topbar');
+
+      if (!root.classList.contains('reduced-motion') && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      }
+
+      function chrome() {
+        var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        var p = Math.min(1, window.scrollY / max);
+        if (bar) bar.style.transform = 'scaleX(' + p + ')';
+        topbar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+      }
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(function () { chrome(); ticking = false; }); ticking = true; }
+      }, { passive: true });
+      chrome();
+    })();
+  </script>
+  <script>
+    /* Sign-up form: validate, consent-gate, mailto capture (Formspree-ready). */
+    (function () {
+      var form = document.getElementById('claim-form');
+      var em = document.getElementById('em');
+      var consent = document.getElementById('consent');
+      var emErr = document.getElementById('em-err');
+      var consentErr = document.getElementById('consent-err');
+      var status = document.getElementById('form-status');
+      var btn = document.getElementById('submit-btn');
+      var success = document.getElementById('success-block');
+      var successH = document.getElementById('success-h');
+      var cardName = document.getElementById('card-name');
+      var card3d = document.querySelector('.card3d');
+      var win = window;
+
+      /* Configure the capture. Defaults to a well-formed mailto that opens the
+         visitor's mail client with a prefilled subject/body. To use a free
+         tier endpoint instead, set FORM_ENDPOINT to a Formspree/Basin URL. */
+      var CAPTURE = {
+        mailto: 'hello@inkwellbooks.ie',
+        formEndpoint: '' /* e.g. 'https://formspree.io/f/XXXX' */
+      };
+
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      function deriveName(email) {
+        var local = email.split('@')[0] || '';
+        var parts = local.split(/[^a-zA-Z0-9]+/).filter(Boolean);
+        return parts.map(function (p) {
+          p = p.replace(/^\d+/, '');
+          if (!p) return '';
+          return p.charAt(0).toUpperCase() + p.slice(1).toLowerCase();
+        }).filter(Boolean).join(' ') || 'Reader';
+      }
+
+      function setErr(el, on) {
+        el.hidden = !on;
+        var field = el.closest('.field');
+        if (field) field.classList.toggle('has-error', on);
+      }
+
+      function announce(msg) {
+        status.textContent = '';
+        requestAnimationFrame(function () { status.textContent = msg; });
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var ok = true;
+        var emailVal = em.value.trim();
+
+        if (!emailRe.test(emailVal)) { em.setAttribute('aria-invalid', 'true'); setErr(emErr, true); ok = false; em.focus(); }
+        else { em.setAttribute('aria-invalid', 'false'); setErr(emErr, false); }
+
+        if (!consent.checked) { consent.setAttribute('aria-invalid', 'true'); setErr(consentErr, true); if (ok) consent.focus(); ok = false; }
+        else { consent.setAttribute('aria-invalid', 'false'); setErr(consentErr, false); }
+
+        if (!ok) return;
+
+        form.setAttribute('aria-busy', 'true');
+        btn.disabled = true;
+        btn.textContent = 'Claiming your card…';
+
+        var name = deriveName(emailVal);
+        var done = function () {
+          form.hidden = true;
+          success.hidden = false;
+          if (cardName) cardName.textContent = name;
+          if (card3d) card3d.classList.add('flipped');
+          announce('Welcome to the Library. Your card is on its way.');
+          win.__inkwellCardSuccess && win.__inkwellCardSuccess(name);
+          if (successH) successH.focus();
+        };
+        var fail = function () {
+          form.setAttribute('aria-busy', 'false');
+          btn.disabled = false;
+          btn.textContent = 'Claim your Library Card';
+          announce('The card is having a moment. Try again in a second — or write to us at hello@inkwellbooks.ie.');
+        };
+
+        var subject = encodeURIComponent('Library Card request — ' + name);
+        var body = encodeURIComponent(
+          "Hi Inkwell,\n\nI'd like my Library Card.\n\nEmail: " + emailVal +
+          "\nConsent: Yes, email me Inkwell news and events. Unsubscribe anytime.\n"
+        );
+        var mailto = 'mailto:' + CAPTURE.mailto + '?subject=' + subject + '&body=' + body;
+
+        if (CAPTURE.formEndpoint) {
+          var fd = new FormData();
+          fd.append('email', emailVal);
+          fd.append('consent', consent.checked ? 'yes' : 'no');
+          fetch(CAPTURE.formEndpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+            .then(function (r) { if (!r.ok) throw new Error('bad'); done(); })
+            .catch(function () { fail(); });
+        } else {
+          var a = document.createElement('a');
+          a.href = mailto;
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          done();
+        }
+      });
+
+      em.addEventListener('input', function () { setErr(emErr, false); em.setAttribute('aria-invalid', 'false'); });
+      consent.addEventListener('change', function () { setErr(consentErr, false); consent.setAttribute('aria-invalid', 'false'); });
+    })();
+  </script>
+</body>
+</html>
